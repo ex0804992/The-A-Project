@@ -409,8 +409,8 @@ public class GradeSystemsTest {
      * **/
     @Test
     public void testGetUserName(){
-        String expectName = "凌宗廷";
-        String actualName = gradeSystems.getUserName(userData[0]);
+        String expectName = "許文馨";
+        String actualName = gradeSystems.getUserName("955002056");
         assertEquals(expectName, actualName);
     }
 
