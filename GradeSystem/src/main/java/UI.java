@@ -1,9 +1,13 @@
+import java.util.Scanner;
+import java.util.regex.Pattern;
+
 /**
  * Created by Tzu-chao Wang on 2015/4/29.
  */
 public class UI {
     private GradeSystems gradeSystems;
     private String studentID;
+    private  Scanner systemInput;
 
     /**
          * Class constructor.
@@ -11,6 +15,7 @@ public class UI {
          */
     public UI() {
         studentID = "";
+        systemInput = new Scanner(System.in);
 
         try {
             gradeSystems = new GradeSystems();
@@ -29,12 +34,14 @@ public class UI {
         String userInput = "";
 
         if (userLogin()) {
-            userInput = promptCommand();
-
-            while (userInput != "E") {
+            while (!userInput.equals("E")) {
+                promptCommand();
+                userInput = systemInput.next();
                 commandController(userInput);
             }
         }
+
+        showFinishMsg();
     }
 
     /**
@@ -43,13 +50,15 @@ public class UI {
          *                 <code>false</code> if the user choose to quit this system.
          */
     public boolean userLogin() {
-        String userInput = promptID();
+        promptID();
+        String userInput = systemInput.next();
 
         while (!isLoginCommandValid(userInput)) {
-            userInput = promptID();
+            promptID();
+            userInput = systemInput.next();
         }
 
-        if (userInput == "Q") {
+        if (userInput.equals("Q")) {
             return false;
         }
         else {
@@ -64,15 +73,15 @@ public class UI {
          * @return <code>true</code> if the command is valid;
          *                 <code>false</code> if the command is invalid.
          */
-    public boolean isLoginCommandValid(input) {
-        if (input != "Q") {
+    public boolean isLoginCommandValid(String input) {
+        if (!input.equals("Q") && !input.equals("q")) {
             if (!Pattern.matches("[1-9][0-9]{8}", input)) {
-                System.out.println("Invalid input!\n");
+                System.out.println("è¼¸å…¥æ ¼å¼ä¸æ­£ç¢ºï¼\n");
                 return false;
             }
 
             if (!checkID(input)) {
-                System.out.println("No such student ID!\n");
+                System.out.println("æŸ¥ç„¡æ­¤å­¸ç”Ÿ IDï¼\n");
                 return false;
             }
         }
@@ -115,10 +124,10 @@ public class UI {
                 gradeSystems.updateWeights();
                 break;
             case "E":
-                showFinishMsg();
+                System.out.println(studentID + " å·²ç™»å‡º\n");
                 break;
             default:
-                System.out.println("No such command!\n");
+                System.out.println("æŸ¥ç„¡æ­¤æŒ‡ä»¤!\n");
                 break;
         }
     }
@@ -126,38 +135,31 @@ public class UI {
     /**
          * Shows available command of this grade system and gets the user's input.
          *
-         * @return returns the user's input.
+         * @return returns the available commands.
          */
     public String promptCommand() {
-        String helperText = "¿é¤J«ü¥O\n" +
-                "1) G Åã¥Ü¦¨ÁZ (Grade)\n" +
-                "2) R Åã¥Ü±Æ¦W (Rank)\n" +
-                "3) W§ó·s°t¤À (Weight)\n" +
-                "4) E Â÷¶}¿ï³æ (Exit)\n";
-        String userInput = "";
-        Scanner systemInput = new Scanner(System.in);
+        String helperText = "è¼¸å…¥æŒ‡ä»¤\n"+
+                "1) G é¡¯ç¤ºæˆç¸¾ (Grade)\n" +
+                "2) R é¡¯ç¤ºæ’å (Rank)\n" +
+                "3) Wæ›´æ–°é…åˆ† (Weight)\n" +
+                "4) E é›¢é–‹é¸å–® (Exit)\n";
 
         System.out.println(helperText);
-        userInput = systemInput.next();
 
-        return userInput;
+        return helperText;
     }
 
     /**
-         * Tells user to input the student ID number or input Q to quit, and
-         * gets the user input then return it.
+         * Tells user to input the student ID number or input Q to quit.
          *
-         * @return returns the user's input.
+         * @return returns the helper text.
          */
     public String promptID() {
-        String text = "¿é¤JID©Î Q (µ²§ô¨Ï¥Î)¡H";
-        String userInput = "";
-        Scanner systemInput = new Scanner(System.in);
+        String text = "è¼¸å…¥IDæˆ– Q (çµæŸä½¿ç”¨)ï¼Ÿ";
 
         System.out.println(text);
-        userInput = systemInput.next();
 
-        return userInput;
+        return text;
     }
 
     /**
@@ -166,9 +168,10 @@ public class UI {
          *  @return returns the finish message.
          */
     public String showFinishMsg() {
-        String finishMessage = "µ²§ô¤F¡I";
+        String finishMessage = "çµæŸäº†ï¼";
 
         System.out.println(finishMessage);
+
         return finishMessage;
     }
 
@@ -183,9 +186,5 @@ public class UI {
 
         System.out.println(welcomeMessage);
         return welcomeMessage;
-    }
-
-    public void showErrorMsg() {
-
     }
 }

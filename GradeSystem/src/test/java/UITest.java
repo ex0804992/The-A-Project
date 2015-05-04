@@ -16,14 +16,6 @@ public class UITest extends TestCase {
     private ArrayList<Integer> studentGrades;
     private ArrayList<String> allStudentID;
 
-    private PrintStream oldOutPut = System.out;
-    private PrintStream oldErr = System.err;
-    private InputStream oldInput = System.in;
-
-    private ByteArrayOutputStream output = new ByteArrayOutputStream();
-    private ByteArrayOutputStream errOutput = new ByteArrayOutputStream();
-    private ByteArrayInputStream input = new ByteArrayInputStream("E".getBytes());
-
     public UITest(String name) {
         super(name);
         studentGrades = new ArrayList<Integer>();
@@ -31,27 +23,50 @@ public class UITest extends TestCase {
 
         initStudentData();
         initAllStudentID();
-        initSystemIO();
     }
 
     protected void setUp() {
-        System.setOut(new PrintStream(output));
-        System.setErr(new PrintStream(errOutput));
-        System.setIn(input);
         ui = new UI();
     }
 
     protected void tearDown() {
-        System.setOut(oldOutPut);
-        System.setErr(oldErr);
-        System.setIn(oldInput);
         ui = null;
+    }
+
+    @org.junit.Test
+    public void testIsLoginCommandValidWithQ() {
+        boolean result = ui.isLoginCommandValid("Q");
+        assertEquals("Test isLoginCommandValid() returns true (with command Q)", true, result);
+    }
+
+    @org.junit.Test
+    public void testIsLoginCommandValidWithNonExistCommand() {
+        boolean result = ui.isLoginCommandValid("X");
+        assertEquals("Test isLoginCommandValid() returns false (with ono exist command)", false, result);
+    }
+
+    @org.junit.Test
+    public void testIsLoginCommandValidWithWrongStudentID() {
+        boolean result = ui.isLoginCommandValid("100000000");
+        assertEquals("Test isLoginCommandValid() returns false (with wrong student ID)", false, result);
+    }
+
+    @org.junit.Test
+    public void testIsLoginCommandValidWithWrongStudentIDFormat() {
+        boolean result = ui.isLoginCommandValid("1005025");
+        assertEquals("Test isLoginCommandValid() returns false (with wrong student ID format)", false, result);
+    }
+
+    @org.junit.Test
+    public void testIsLoginCommandValidWithCorrectStudentID() {
+        boolean result = ui.isLoginCommandValid(studentID);
+        assertEquals("Test isLoginCommandValid() returns true (with correct student ID)", true, result);
     }
 
     @org.junit.Test
     public void testCheckIDWithExistID() {
         boolean result = ui.checkID(studentID);
-        assertEquals("Test checkID returns true (with exist ID)", true, result);
+        assertEquals("Test checkID() returns true (with exist ID)", true, result);
     }
 
     @org.junit.Test
@@ -63,40 +78,45 @@ public class UITest extends TestCase {
         while (allStudentID.contains(nonExistStudentID));
 
         boolean result = ui.checkID(nonExistStudentID);
-        assertEquals("Test checkID returns false (with non exist ID)", true, result);
+        assertEquals("Test checkID() returns false (with non exist ID)", true, result);
+    }
+
+    @org.junit.Test
+    public void testCheckIDWithWrongStudentIDFormat() {
+        boolean result = ui.checkID("1005025");
+        assertEquals("Test checkID() returns false (with wrong student ID format)", false, result);
     }
 
     @org.junit.Test
     public void testPromptCommand() {
-        ui.promptCommand();
-        // Read system output and assert.
+        String actualText = ui.promptCommand();
+        String expectedText = "Ëº∏ÂÖ•Êåá‰ª§\n"+
+                "1) G È°ØÁ§∫ÊàêÁ∏æ (Grade)\n" +
+                "2) R È°ØÁ§∫ÊéíÂêç (Rank)\n" +
+                "3) WÊõ¥Êñ∞ÈÖçÂàÜ (Weight)\n" +
+                "4) E Èõ¢ÈñãÈÅ∏ÂñÆ (Exit)\n";
+
+        assertEquals("Test promptCommand()", expectedText, actualText);
     }
 
     @org.junit.Test
     public void testPromptID() {
-        ui.promptID();
-        // Read system output and assert.
+        String result = ui.promptID();
+        assertEquals("Test promptID()", "Ëº∏ÂÖ•IDÊàñ Q (ÁµêÊùü‰ΩøÁî®)Ôºü", result);
     }
 
     @org.junit.Test
     public void testShowFinishMsg() {
-        ui.showFinishMsg();
+        String message = ui.showFinishMsg();
 
-        assertEquals("Test showFinishMsg()", "øÈ§JID©Œ Q (µ≤ßÙ®œ•Œ)°H", output.toString());
+        assertEquals("Test showFinishMsg()", "ÁµêÊùü‰∫ÜÔºÅ", message);
     }
 
     @org.junit.Test
     public void testShowWelcomeMsg() {
-        ui.showWelcomeMsg(studentID);
+        String message = ui.showWelcomeMsg(studentID);
 
-        assertEquals("Test showWelcomeMsg()", "≈w™Ô°A" + studentID, output.toString());
-    }
-
-    @org.junit.Test
-    public void testShowErrorMsg() {
-        ui.showErrorMsg();
-
-        assertEquals("Test showErrorMsg()", "IDø˘§F!", output.toString());
+        assertEquals("Test showWelcomeMsg()", "Welcome " + studentName, message);
     }
 
     private void initStudentData() {
@@ -140,16 +160,6 @@ public class UITest extends TestCase {
                 allStudentID.add(lineScanner.next());
             }
         }
-    }
-
-    private void initSystemIO() {
-        oldOutPut = System.out;
-        oldErr = System.err;
-        oldInput = System.in;
-
-        output = new ByteArrayOutputStream();
-        errOutput = new ByteArrayOutputStream();
-        input = new ByteArrayInputStream("E".getBytes());
     }
 
     private String generateRandomStudentID() {
