@@ -33,7 +33,7 @@ public class GradeSystems {
             while (scanner.hasNextLine()) {
                 //read line
                 String[] inputStr = scanner.nextLine().split(" +");
-
+                System.out.println(inputStr[0]);
                 //call main.Grades() 建構aGrade
                 //用 Java Scanner 來 scan line 把各欄位存入aGrade
                 Grades agrades = new Grades(inputStr);

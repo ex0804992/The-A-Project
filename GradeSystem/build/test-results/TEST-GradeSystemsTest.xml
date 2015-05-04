@@ -1,22 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="GradeSystemsTest" tests="16" skipped="0" failures="0" errors="0" timestamp="2015-05-04T08:17:11" hostname="bighead-PC" time="0.09">
+<testsuite name="GradeSystemsTest" tests="16" skipped="0" failures="0" errors="0" timestamp="2015-05-04T08:58:06" hostname="bighead-PC" time="0.131">
   <properties/>
-  <testcase name="testShowGrade" classname="GradeSystemsTest" time="0.005"/>
+  <testcase name="testShowGrade" classname="GradeSystemsTest" time="0.008"/>
   <testcase name="testUpdateWeights1" classname="GradeSystemsTest" time="0.008"/>
   <testcase name="testUpdateWeights2" classname="GradeSystemsTest" time="0.003"/>
   <testcase name="testUpdateWeights3" classname="GradeSystemsTest" time="0.004"/>
-  <testcase name="testGetNewWeights" classname="GradeSystemsTest" time="0.003"/>
-  <testcase name="testShowOldWeights" classname="GradeSystemsTest" time="0.002"/>
+  <testcase name="testGetNewWeights" classname="GradeSystemsTest" time="0.002"/>
+  <testcase name="testShowOldWeights" classname="GradeSystemsTest" time="0.047"/>
   <testcase name="testSetWeights" classname="GradeSystemsTest" time="0.002"/>
   <testcase name="testCheckWeights1" classname="GradeSystemsTest" time="0.002"/>
   <testcase name="testCheckWeights2" classname="GradeSystemsTest" time="0.002"/>
-  <testcase name="testCheckWeights3" classname="GradeSystemsTest" time="0.002"/>
-  <testcase name="testContainsID1" classname="GradeSystemsTest" time="0.002"/>
-  <testcase name="testContainsID2" classname="GradeSystemsTest" time="0.001"/>
+  <testcase name="testCheckWeights3" classname="GradeSystemsTest" time="0.001"/>
+  <testcase name="testContainsID1" classname="GradeSystemsTest" time="0.001"/>
+  <testcase name="testContainsID2" classname="GradeSystemsTest" time="0.002"/>
   <testcase name="testGradeSystems" classname="GradeSystemsTest" time="0.002"/>
-  <testcase name="testShowRank" classname="GradeSystemsTest" time="0.001"/>
-  <testcase name="testGetUserName" classname="GradeSystemsTest" time="0.002"/>
+  <testcase name="testShowRank" classname="GradeSystemsTest" time="0.005"/>
+  <testcase name="testGetUserName" classname="GradeSystemsTest" time="0.001"/>
   <testcase name="testGetWeights" classname="GradeSystemsTest" time="0.002"/>
-  <system-out><![CDATA[]]></system-out>
+  <system-out><![CDATA[955002056
+962001044
+962001051
+965002038
+965002044
+966002031
+975002021
+975002026
+975002039
+975002069
+975002070
+975002501
+985002001
+985002002
+985002003
+985002004
+985002005
+985002006
+985002007
+985002008
+985002009
+985002010
+985002011
+985002012
+985002014
+985002015
+985002016
+985002017
+985002018
+985002020
+985002021
+985002022
+985002024
+985002025
+985002026
+985002027
+985002028
+985002029
+985002030
+985002031
+985002032
+985002033
+985002034
+985002036
+985002037
+985002038
+985002039
+985002040
+985002201
+985002501
+985002503
+985002504
+985002505
+985002506
+985002507
+985002508
+985002509
+985002510
+985002511
+985002512
+985002513
+985002514
+985002515
+986002026
+995002901
+]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

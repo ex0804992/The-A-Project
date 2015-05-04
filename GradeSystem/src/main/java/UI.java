@@ -113,17 +113,18 @@ public class UI {
          * @param command the command inputted by user.
          */
     public void commandController(String command) {
-        switch (command) {
-            case "G":
+        char c = command.charAt(0);
+        switch (c) {
+            case 'G':
                 gradeSystems.showGrade(studentID);
                 break;
-            case "R":
+            case 'R':
                 gradeSystems.showRank(studentID);
                 break;
-            case "W":
+            case 'W':
                 gradeSystems.updateWeights();
                 break;
-            case "E":
+            case 'E':
                 System.out.println(studentID + " 已登出\n");
                 break;
             default:
