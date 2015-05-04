@@ -39,7 +39,6 @@ public class GradeSystems {
                 Grades agrades = new Grades(inputStr);
                 //aGrade.calculateTotalGrade(weights) 回傳aTotalGrade把它存入aGrade
                 agrades.calculateTotalGrade(this.getWeights());
-
                 //把 aGrade 存入 aList
                 aList.add(agrades);
 

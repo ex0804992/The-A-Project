@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="GradeSystemsTest" tests="16" skipped="0" failures="0" errors="0" timestamp="2015-05-04T08:17:11" hostname="bighead-PC" time="0.09">
+  <properties/>
+  <testcase name="testShowGrade" classname="GradeSystemsTest" time="0.005"/>
+  <testcase name="testUpdateWeights1" classname="GradeSystemsTest" time="0.008"/>
+  <testcase name="testUpdateWeights2" classname="GradeSystemsTest" time="0.003"/>
+  <testcase name="testUpdateWeights3" classname="GradeSystemsTest" time="0.004"/>
+  <testcase name="testGetNewWeights" classname="GradeSystemsTest" time="0.003"/>
+  <testcase name="testShowOldWeights" classname="GradeSystemsTest" time="0.002"/>
+  <testcase name="testSetWeights" classname="GradeSystemsTest" time="0.002"/>
+  <testcase name="testCheckWeights1" classname="GradeSystemsTest" time="0.002"/>
+  <testcase name="testCheckWeights2" classname="GradeSystemsTest" time="0.002"/>
+  <testcase name="testCheckWeights3" classname="GradeSystemsTest" time="0.002"/>
+  <testcase name="testContainsID1" classname="GradeSystemsTest" time="0.002"/>
+  <testcase name="testContainsID2" classname="GradeSystemsTest" time="0.001"/>
+  <testcase name="testGradeSystems" classname="GradeSystemsTest" time="0.002"/>
+  <testcase name="testShowRank" classname="GradeSystemsTest" time="0.001"/>
+  <testcase name="testGetUserName" classname="GradeSystemsTest" time="0.002"/>
+  <testcase name="testGetWeights" classname="GradeSystemsTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

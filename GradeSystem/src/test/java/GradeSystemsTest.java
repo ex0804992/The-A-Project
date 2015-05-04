@@ -109,7 +109,7 @@ public class GradeSystemsTest {
 
     @Test
     public void testContainsID2(){
-        assertFalse(gradeSystems.containsID("123456789"));
+        assertTrue(gradeSystems.containsID("955002056"));
     }
 
     /**
